@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
 }
 
 class SortableGridExample extends StatelessWidget {
-  final List<String> alphabets = ['+', 'B', 'C', 'D', 'E', 'F'];
+  final List<String> alphabets = ['+', '', 'C', 'D', 'E', ''];
 
   String getRandomColor() {
     final random = Random();

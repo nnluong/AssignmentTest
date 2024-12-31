@@ -95,7 +95,7 @@ class SortableGridBloc extends Bloc<SortableGridEvent, SortableGridState> {
 
     for (int i = 0; i < state.itemOrder.length; i++) {
       if (i != state.draggedItemIndex) {
-        final position = _getItemPosition(state, i);
+        final position = _getItemPosition(i);
         final distance =
             (Offset(state.draggedItemX, state.draggedItemY) - position)
                 .distance;
@@ -110,20 +110,9 @@ class SortableGridBloc extends Bloc<SortableGridEvent, SortableGridState> {
   }
 
   // Helper method to calculate the position of an item based on its index
-  Offset _getItemPosition(SortableGridState state, int index) {
+  Offset _getItemPosition(int index) {
     final row = index ~/ 2;
     final col = index % 2;
-    double x = col * 90.0; // Adjust width and height to match your grid size
-    double y = row * 90.0;
-
-    // If dragging an item, move it with the drag position
-    if (state is SortableGridDragging &&
-        state.draggedItemIndex == index &&
-        state.draggedItemX != null &&
-        state.draggedItemY != null) {
-      return Offset(state.draggedItemX, state.draggedItemY);
-    }
-
-    return Offset(x, y);
+    return Offset(col * 90.0, row * 90.0);
   }
 }
